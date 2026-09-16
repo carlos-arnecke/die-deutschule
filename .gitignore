@@ -1,3 +1,9 @@
+# Only the runtime files go to GitHub (the repo is public). Docs, notes,
+# artifact builds and helper scripts stay local.
+*.md
+dist/
+tools/
+.claude/
 node_modules/
 Thumbs.db
 .DS_Store
