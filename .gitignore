@@ -1,6 +1,7 @@
 # Only the runtime files go to GitHub (the repo is public). Docs, notes,
 # artifact builds and helper scripts stay local.
 *.md
+!v1.0/for-teachers-review.md
 dist/
 tools/
 .claude/
