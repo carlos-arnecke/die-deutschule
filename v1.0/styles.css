@@ -79,47 +79,15 @@ button.primary { background: var(--accent); color: var(--ground); }
 button.ghost { background: none; color: var(--accent); }
 button:focus-visible { outline: 3px solid #ffbf47; outline-offset: 2px; }
 
-/* The only chrome: two buttons parked out of the way. */
-.floating {
+/* The only chrome: a restart button parked out of the way. */
+.floating-restart {
   position: fixed; right: 18px; bottom: 18px; z-index: 30;
-  display: flex; gap: 8px;
-}
-.floating-btn {
   font-size: .85rem; padding: 8px 14px;
   background: var(--surface); color: var(--accent);
   border: 1px solid var(--line);
   box-shadow: 0 1px 4px rgba(0, 0, 0, .12);
 }
-.floating-btn:hover { border-color: var(--accent); }
-body.logic-open .floating { display: none; }
-
-/* "View test logic" — a full-screen overlay so the test underneath is untouched. */
-.logic {
-  position: fixed; inset: 0; z-index: 40;
-  overflow-y: auto;
-  background: var(--ground);
-}
-.lg-wrap { max-width: 760px; margin: 0 auto; padding: 32px 20px 96px; }
-.lg-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 6px; }
-.lg-top h2 { margin: 0; }
-.lg-nav { font-size: .88rem; line-height: 1.9; padding: 12px 15px; background: var(--soft);
-  border: 1px solid var(--line); border-radius: 4px; margin: 0 0 24px; }
-.logic h3 { font-size: 1.2rem; margin: 40px 0 10px; padding-top: 12px; border-top: 1px solid var(--line); }
-.logic h4 { font-size: 1rem; margin: 22px 0 8px; }
-.logic p { max-width: 68ch; }
-.lg-table { border-collapse: collapse; width: 100%; font-size: .92rem; margin: 10px 0 16px; }
-.lg-table th, .lg-table td { text-align: left; vertical-align: top; padding: 7px 10px; border-bottom: 1px solid var(--line); }
-.lg-table th { font-weight: 600; background: var(--soft); }
-.lg-level { border: 1px solid var(--line); border-radius: 4px; padding: 10px 14px; margin-bottom: 10px; }
-.lg-level > summary { font-weight: 600; color: var(--ink); }
-.lg-item { border-top: 1px solid var(--line); padding: 14px 0 6px; }
-.lg-item-head { margin-bottom: 6px; }
-.lg-stem { font-size: 1.05rem; font-weight: 600; margin: 6px 0 8px; }
-.lg-opts { list-style: none; padding: 0; margin: 0 0 8px; }
-.lg-opts li { padding: 3px 0; }
-.lg-opts li.right { font-weight: 600; color: var(--ok); }
-.lg-note { color: var(--muted); }
-.lg-bottom { margin-top: 40px; }
+.floating-restart:hover { border-color: var(--accent); }
 
 .opt {
   display: flex; gap: 12px; align-items: flex-start;
