@@ -130,15 +130,6 @@
       (MODE === 'staff' ? '<p class="staffbar">Front-desk version — contact details are optional, and you get a summary to copy at the end.</p>' : ''),
       '<button class="primary" id="go">Start the test</button>');
     on('#go', prior);
-
-    document.querySelector('.body').insertAdjacentHTML('beforeend',
-      '<p class="modelink"><a href="#" id="modeswap">' +
-      (MODE === 'staff' ? 'Switch to the website version' : 'Open the front-desk version') +
-      '</a> — for the team, not for visitors.</p>');
-    on('#modeswap', function (e) {
-      e.preventDefault();
-      restart(MODE === 'staff' ? 'public' : 'staff');
-    });
   }
 
   /* -------------------------------------------------------- 2. prior German */
