@@ -2,6 +2,8 @@
 # artifact builds and helper scripts stay local.
 *.md
 !v1.0/for-teachers-review.md
+!v1.1/for-teachers-review.md
+!v1.1/01-theory-and-framework.md
 dist/
 tools/
 .claude/
