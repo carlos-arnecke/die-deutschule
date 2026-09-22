@@ -192,3 +192,6 @@ section { margin-bottom: 8px; }
 a { color: var(--accent); }
 
 @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+
+/* Free-text box under the "Other" goal. */
+.fld.other { margin: 4px 0 8px 30px; max-width: 420px; }

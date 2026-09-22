@@ -18,6 +18,7 @@
     direction: null,     // 'up' | 'down' | null
     placement: null,
     goals: [],
+    goalOther: '',
     targetLevel: null,
     exams: [],
     visa: null,
@@ -269,13 +270,12 @@
   /* ------------------------------------------------------------ 3. goals */
 
   var GOALS = [
-    { value: 'visa',         label: 'A visa or residence permit' },
-    { value: 'university',   label: 'Studying at a German university' },
-    { value: 'work',         label: 'Work or my career' },
-    { value: 'everyday',     label: 'Everyday life in Germany' },
-    { value: 'citizenship',  label: 'Citizenship' },
-    { value: 'conversation', label: 'Speaking more confidently' },
-    { value: 'interest',     label: 'Personal interest' }
+    { value: 'visa',        label: 'Visa or residence permit' },
+    { value: 'university',  label: 'Studying at a German university' },
+    { value: 'work',        label: 'Work' },
+    { value: 'citizenship', label: 'Citizenship' },
+    { value: 'interest',    label: 'Personal interest' },
+    { value: 'other',       label: 'Other' }
   ];
   var TARGETS = [
     { value: 'unsure', label: 'I am not sure — recommend something' },
@@ -296,14 +296,25 @@
     screen('What do you need German for?',
       'Pick everything that applies.',
       progress(3, 5, 'your goal') +
-      '<fieldset><legend>Why are you learning German?</legend>' + checks('goals', GOALS, S.goals) + '</fieldset>' +
+      '<fieldset><legend>Why are you learning German?</legend>' + checks('goals', GOALS, S.goals) +
+        '<label class="fld other" id="goalOtherWrap"' + (S.goals.indexOf('other') > -1 ? '' : ' hidden') + '>' +
+        '<span>Tell us in a few words</span><input id="goalOther" type="text" maxlength="140" value="' + esc(S.goalOther) + '"></label>' +
+      '</fieldset>' +
       '<fieldset><legend>Which level do you want to reach?</legend>' + radios('target', TARGETS, S.targetLevel) + '</fieldset>' +
       '<fieldset><legend>Do you need an official certificate? <span class="hintlabel">Pick as many as apply</span></legend>' +
         checks('exams', EXAMS, S.exams) + '</fieldset>',
       '<button class="primary" id="next">Continue</button>');
 
+    var otherBox = document.getElementById('goals_other');
+    if (otherBox) otherBox.addEventListener('change', function () {
+      var w = document.getElementById('goalOtherWrap');
+      w.hidden = !otherBox.checked;
+      if (otherBox.checked) document.getElementById('goalOther').focus();
+    });
+
     on('#next', function () {
       S.goals = pickedAll('goals');
+      S.goalOther = S.goals.indexOf('other') > -1 ? val('goalOther') : '';
       S.targetLevel = picked('target');
       S.exams = pickedAll('exams');
       if (!S.goals.length) return warn('Pick at least one reason.');
@@ -613,7 +624,7 @@
         atCeiling: S.placement.atCeiling
       },
       needs: {
-        goals: S.goals, targetLevel: S.targetLevel, exams: S.exams, visa: S.visa,
+        goals: S.goals, goalOther: S.goalOther, targetLevel: S.targetLevel, exams: S.exams, visa: S.visa,
         format: S.format, timeSlot: S.timeSlot, startWhen: S.startWhen
       },
       recommendation: {
@@ -645,7 +656,7 @@
     if (where) L.push('WHO:   ' + where);
     if (S.contactSkipped) L.push('NAME:  (walk-in, no details taken)');
     L.push('');
-    L.push('WANTS: ' + S.goals.join(', ') + '  -> target ' + S.targetLevel + ', exams: ' + S.exams.join('+'));
+    L.push('WANTS: ' + S.goals.join(', ') + (S.goalOther ? ' ("' + S.goalOther + '")' : '') + '  -> target ' + S.targetLevel + ', exams: ' + S.exams.join('+'));
     L.push('VISA:  ' + S.visa);
     L.push('FIT:   ' + S.format + ', ' + S.timeSlot + ', start ' + S.startWhen);
     L.push('');

@@ -333,8 +333,8 @@ function recommend(state) {
     });
   }
 
-  /* --- 5. conversation --------------------------------------------- */
-  if ((state.goals || []).indexOf('conversation') > -1 && qualifiesForFormatD(p)) {
+  /* --- 5. Format D — by level; it is the school's product for B2/C1 --- */
+  if (qualifiesForFormatD(p)) {
     r.addons.push({
       key: 'formatD',
       name: ADDONS.formatD.name,
